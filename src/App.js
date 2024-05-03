@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { Nav, NavItem, Button, DropdownItem } from "react-bootstrap";
+
+import React, { useState } from "react";
+
+import Sidebar from "react-bootstrap-sidebar";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Invoice from "./InvoiceComponent/InvoiceListComponent";
+
+const SidebarComponent = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  return (
+    <div>
+      <Button bsStyle="primary" onClick={() => setIsVisible(true)}>
+        <DropdownItem glyph="menu-hamburger" />
+      </Button>
+      <Sidebar
+        side="left"
+        isVisible={isVisible}
+        onHide={() => setIsVisible(false)}
+      >
+        <Nav>
+          <NavItem href="/invoices">Invoices</NavItem>
+        </Nav>
+      </Sidebar>
+    </div>
+  );
+};
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <SidebarComponent />
+        <Route path="/invoices" component={Invoice} />
+      </Router>
     </div>
   );
 }
