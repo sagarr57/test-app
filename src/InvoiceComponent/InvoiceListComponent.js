@@ -1,3 +1,7 @@
+import React from 'react';
+import {  Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+
 const sampleInvoices = [
   { id: "1", itemName: "item1", Quantity: 3, price: 8, amount: 24 },
   { id: "2", itemName: "item2", Quantity: 6, price: 18, amount: 24 },
@@ -6,6 +10,7 @@ const sampleInvoices = [
 ];
 const InvoiceListComponent = () => {
   return (
+    <><Button component={Link} to="/invoices/new">Add</Button>
     <div class="table-responsive">
       <table class="table">
         <thead>
@@ -32,6 +37,7 @@ const InvoiceListComponent = () => {
         </tbody>
       </table>
     </div>
+    </>
   );
 };
 
